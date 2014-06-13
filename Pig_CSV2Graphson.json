@@ -1,4 +1,6 @@
-register /usr/lib/pig/piggybank.jar
-A = load '/home/Praphulla/Desktop/test1' using org.apache.pig.piggybank.storage.XMLLoader('employee_id') as (x:chararray);
-B = foreach A generate REGEX_EXTRACT(x,'(.*)',1);
+A = LOAD 'vertices.csv' using PigStorage(';') AS (_id,_type,title,first_name,last_name,position,nationality,birthdate,origin,colleague,type_colleague,diploma,Upper_education,type_upper_education,diploma,Education_source,Current_company_1,position_1,starting_date_1,Current_company_2,position_2,starting_date_2,current_company_3,position_3,starting_date_3,Address_1,City_1,type_address_1,Phone,Address_1_source,Address_2,City_2,type_address_2,Address_3,City_3,type_address_3,Memberships_and_Affiliations_1,Status_1,Memberships_and_Affiliations_2,Status_2,Memberships_and_Affiliations_3,Status_3,Previous_job_1,Previous_position_1,Start_1,Finish_1,Previous_job_2,Previous_position_2,Start_2,Finish_2,Previous_job_3,Previous_position_3,Start_3,Finish_3,Previous_job_4,Previous_position_4,Start_4,Finish_4,Previous_jobs_source,Advisors,Products_consumed,Lifecycle_status,News_and_Signals,Twitter,Network_metrics,Actual_references,Other_indicators,Lifestyle,Conference_participation,Publications,Operting_Profit,Net_Benefit,Personnel
+);
+B = foreach A generate REGEX_EXTRACT(x,'<employee>(.*)</employee>',1)
+
+
 DUMP B;
