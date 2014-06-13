@@ -2,3 +2,4 @@ register /usr/lib/pig/piggybank.jar
 A = load '/home/sudeep/Desktop/test1' using
 org.apache.pig.piggybank.storage.XMLLoader('employee_id') as (x:chararray);
 B = foreach A generate REGEX_EXTRACT(x,'(.*)',1);
+DUMP B;
